@@ -1,0 +1,10 @@
+.header{
+    flex-grow: 1;
+    /* overflow: hidden;
+    margin: 10px; */
+}
+
+.header-div{
+    align-items: flex-end;
+    justify-content: start;
+}

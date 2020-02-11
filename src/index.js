@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import "./app.css";
+
 import Header from './components/header';
 import SearchInput from './components/search-input';
 import ToDoList from './components/to-do-list';
+import ItemStatusFilter from "./components/item-status-filter";
+
 
 let Main = () => {
     let todoData = [
@@ -12,9 +16,9 @@ let Main = () => {
         {label: 'have a dinner', important: false},
     ];
     return(
-        <div>
-            <Header />
-            <SearchInput />
+        <div className="todo-app">
+            <Header /> 
+            <SearchInput /> <ItemStatusFilter />
             <ToDoList todos={todoData} />
         </div>
     )

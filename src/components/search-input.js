@@ -1,5 +1,6 @@
 import React from "react";
+import "./search-input.css"
 
-let SearchInput = () => <input placeholder="type a task"/>;
+let SearchInput = () => <input className="search-input" placeholder="type a task"/>;
 
 export default SearchInput
