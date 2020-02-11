@@ -1,21 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-let Header = () => <h1>My To-Do list</h1>;
-let SearchInput = () => <input placeholder="type a task"></input>;
-let ToDoList = () => {
-    return (
-        <ul>
-            <li>learn React</li>
-            <li>go to sleep</li>
-        </ul>
-    )
-};
+
+import Header from './components/header';
+import SearchInput from './components/search-input';
+import ToDoList from './components/to-do-list';
+
 let Main = () => {
+    let todoData = [
+        {label: 'drink coffee', important: false},
+        {label: 'learn React', important: true},
+        {label: 'have a dinner', important: false},
+    ];
     return(
         <div>
             <Header />
             <SearchInput />
-            <ToDoList />
+            <ToDoList todos={todoData} />
         </div>
     )
 }
