@@ -1,0 +1,20 @@
+  
+.todo-list-item {
+    font-size: 1.25rem;
+  }
+  
+.todo-list-item button {
+    width: 35px;
+    margin: -33px 3px 10px 0;
+}
+
+.todo-list-item-label{
+    margin-left: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.done{
+    text-decoration: line-through;
+}
+  
