@@ -1,33 +1,47 @@
 import React, {Component} from "react";
-import "./to-do-list-item.css"
+//to-do-list-item.css"
 
 export default class ToDoListItem extends Component{
 
     constructor(){
         super();
         
-        this.state ={
+        this.state = {
             done: false,
+            important: false
         };
 
         this.onLabelClick = () => {
-            if (this.state.done === false) {
-                this.setState({
-                    done: true
-                });
-            } else{
-                this.setState({
-                    done: false
-                });
+           if(!this.state.done){
+            this.setState({
+                done: true
+              });
+           } else{
+             this.setState({
+               done: false
+             });
+           }
+           
+        };
+        
+        this.onImportantClick = () => {
+          if(!this.state.important) {
+              this.setState({
+                important: true
+              });
+            } else {
+              this.setState({
+                important: false
+              });
             }
-
         };
     }
 
     render(){
-        let {label, important = false} = this.props;
+        let {label} = this.props;
         
-        let {done} = this.state;
+        let {done, important} = this.state;
+        
         let classNames = "todo-list-item-label";
         if (done) {
             classNames += " done";
@@ -46,7 +60,7 @@ export default class ToDoListItem extends Component{
                 </div>
 
                 <button type="button"
-                    className="btn btn-outline-success btn-sm float-right">
+                    className="btn btn-outline-success btn-sm float-right" onClick={this.onImportantClick}>
                     <i className="fa fa-exclamation" />
                 </button>
 

@@ -1,6 +1,6 @@
 import React from "react";
-import ToDoListItem from './to-do-list-item'
-import "./to-do-list.css";
+import ToDoListItem from './to-do-list-item.jsx'
+//to-do-list.css";
 
 let ToDoList = ({todos}) => {
     let elements = todos.map((item) => {
