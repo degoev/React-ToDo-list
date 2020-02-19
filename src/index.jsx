@@ -1,13 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
 
 //app.css";
 
-import Header from './components/header';
-import SearchInput from './components/search-input';
-import ToDoList from './components/to-do-list';
-import ItemStatusFilter from "./components/item-status-filter";
-import AddItem from "./components/add-item"
+import Header from './components/header.jsx';
+import SearchInput from './components/search-input.jsx';
+import ToDoList from './components/to-do-list.jsx';
+import ItemStatusFilter from "./components/item-status-filter.jsx";
+import AddItem from "./components/add-item.jsx"
 
 class Main extends Component {
     constructor() {
