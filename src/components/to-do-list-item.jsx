@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 //to-do-list-item.css"
-//kek
 export default class ToDoListItem extends Component{
 
     constructor(){
@@ -12,33 +11,26 @@ export default class ToDoListItem extends Component{
         };
 
         this.onLabelClick = () => {
-           if(!this.state.done){
-            this.setState({
-                done: true
+            this.setState(({done})=>{
+                return ({
+                    done: !done
+                });
               });
-           } else{
-             this.setState({
-               done: false
-             });
-           }
            
         };
         
         this.onImportantClick = () => {
-          if(!this.state.important) {
-              this.setState({
-                important: true
+              this.setState(({important})=>{
+                return ({
+                    important: !important
+                });
               });
-            } else {
-              this.setState({
-                important: false
-              });
-            }
+
         };
     }
 
     render(){
-        let {label} = this.props;
+        let {label, onDeleteItem} = this.props;
         
         let {done, important} = this.state;
         
@@ -58,17 +50,17 @@ export default class ToDoListItem extends Component{
                 </div>
 
                 <button type="button"
-                    className="btn btn-outline-success btn-sm float-right" onClick={this.onImportantClick}>
+                    className="btn btn-outline-success btn-sm float-right" 
+                    onClick={this.onImportantClick}>
                     <i className="fa fa-exclamation" />
                 </button>
 
                 <button type="button"
-                    className="btn btn-outline-danger btn-sm float-right">
+                    className="btn btn-outline-danger btn-sm float-right"
+                    onClick={onDeleteItem}>
                     <i className="fa fa-trash-o" />
                 </button>
             </div>
         );
     }
 }
-
-

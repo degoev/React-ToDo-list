@@ -2,3 +2,92 @@
     margin: 2rem auto 0 auto;
     max-width: 500px;
 }
+
+
+.header-div{
+    align-items: flex-end;
+    width: 350px;
+}
+
+.header-div h1{
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.header-div h2{
+    color: grey;
+    font-size: 14px;
+}
+
+
+.button-filter{
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    transform: translateY(-7%);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    line-height: 5px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.search-input{
+    margin: 10px 10px 10px 15px;
+    height: 35px;
+    border: 0.5px solid grey;
+    border-radius: 3px;
+    padding-left: 10px;
+    width: 150px;
+}
+
+  
+.todo-list-item {
+    font-size: 1.25rem;
+  }
+  
+.todo-list-item button {
+    width: 35px;
+    margin: -33px 3px 10px 0;
+}
+
+.todo-list-item-label{
+    margin-left: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.done{
+    text-decoration: line-through;
+}
+
+.important{
+  font-weight: bold;
+  color: steelblue;
+}
+
+.todo-list .list-group-item{
+    /* padding: .25rem .75rem; */
+    height: 50px;
+}
+
+.list-group{
+    margin: 10px 15px;
+    width: 320px;
+}
+
+.add-item{
+    margin: 4px 10px 10px 5px;
+    width: 150px;
+    height: 36px;
+    line-height: 10px;
+    padding-bottom: 7px;
+    text-align: center;
+}
+
+.add-input{
+    margin: 10px 5px 10px 15px;
+    height: 35px;
+    border: 0.5px solid grey;
+    border-radius: 3px;
+    padding-left: 10px;
+    width: 220px;
+}
