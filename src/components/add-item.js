@@ -9,14 +9,19 @@ export default class AddItem extends Component {
         this.state = {
             label: ''
         };
+
         this.onSubmitLabel = (event) => {
             this.setState({
                 label: event.target.value
             });
         };
+        
         this.onSubmitForm = (event) => {
             event.preventDefault();
             this.props.onAdded(this.state.label);
+            this.setState({
+                label: ""
+            });
         };
     }
     render() {
@@ -25,10 +30,11 @@ export default class AddItem extends Component {
         onSubmit={this.onSubmitForm}>
             <input
                 type="text"
-                placeholder="I`m going to"
+                placeholder="I`m going to..."
                 id="add-id"
                 className="add-input"
-                onInput={this.onSubmitLabel} />
+                onInput={this.onSubmitLabel}
+                value={this.state.label} />
 
             <button
                 className="btn btn-outline-primary add-item">

@@ -12,16 +12,145 @@ import AddItem from "./components/add-item"
 class Main extends Component {
     constructor() {
         super();
+         //создать элемент
+         this.CreateTodoItem = (label) => {
+            let keyStr = label.split(' ').reduce((sum, word) => sum += word[0], "");
+            return (
+                {
+                    label,
+                    id: keyStr,
+                    important: false,
+                    done: false
+                }
+            );
+        };
+        
         this.state = {
             todoData: [
-                { label: 'drink coffee', id: "dc"},
-                { label: 'learn React', id: "lR"},
-                { label: 'have a dinner', id: 'had'},
+                this.CreateTodoItem('drink coffee'),
+                this.CreateTodoItem('learn React'),
+                this.CreateTodoItem('have a dinner')
             ]
         };
-        this.deleteItem = (id) => {
-            this.setState(({todoData})=>{
-                let index = todoData.findIndex((item) => item.id === id);
+
+       
+        //отметить как выполненный
+        this.toggleDone = (id, value) => {
+            this.setState(({ todoData }) => {
+                let index = todoData.findIndex((item) => item.id === id && item.label === value);
+                let arr = todoData.slice();
+                arr[index].done = !arr[index].done;
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //отметить как важный
+        this.toggleImportant = (id, value) => {
+            this.setState(({ todoData }) => {
+                let index = todoData.findIndex((item) => item.id === id && item.label === value);
+                let arr = todoData.slice();
+                arr[index].important = !arr[index].important;
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //show done
+        this.filterDone = () => {
+            this.setState(({ todoData }) => {
+                let arr = todoData.slice();
+                arr.map((item) => {
+                    item.hidden = false;
+                    return item;
+                });
+                arr.map((item) => {
+                    if (item.done === true) {
+                        item.hidden = false;
+                        return item;
+                    } else {
+                        item.hidden = true;
+                        return true;
+                    }
+                });
+
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //show active
+        this.filterActive = () => {
+            this.setState(({ todoData }) => {
+                let arr = todoData.slice();
+                arr.map((item) => {
+                    item.hidden = false;
+                    return item;
+                });
+                arr.map((item) => {
+                    if (item.done === false) {
+                        item.hidden = false;
+                        return item;
+                    } else {
+                        item.hidden = true;
+                        return true;
+                    }
+                });
+
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //show all
+        this.filterAll = () => {
+            this.setState(({ todoData }) => {
+                let arr = todoData.slice();
+                arr.map((item) => {
+                    item.hidden = false;
+                    return item;
+                });
+
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //search around elements
+        this.onSearchInput = (value) => {
+            this.setState(({ todoData }) => {
+                let arr = todoData.slice();
+                arr.map((item) => {
+                    //if (value === "" || item.hidden === false) {
+                    if (item.label.startsWith(value)) {
+                        item.hidden = false;
+                        return item;
+                    } else if (value === "") {
+                        item.hidden = false;
+                        return item;
+                    } else {
+                        item.hidden = true;
+                        return item;
+                    }
+                    //}
+                    //return item;
+                });
+
+                return {
+                    todoData: arr
+                }
+            });
+        };
+
+        //удаление элемента
+        this.deleteItem = (id, value) => {
+            this.setState(({ todoData }) => {
+                let index = todoData.findIndex((item) => item.id === id && item.label === value);
                 let arr = todoData.slice();
                 arr.splice(index, 1);
                 return {
@@ -29,13 +158,17 @@ class Main extends Component {
                 }
             });
         };
+
+        //добавление элемента
         this.addItem = (label) => {
-            this.setState(({todoData})=>{
+            this.setState(({ todoData }) => {
                 let arr = todoData.slice();
                 let keyStr = label.split(' ').reduce((sum, word) => sum += word[0], "");
                 arr.push({
-                    label, 
-                    id: keyStr
+                    label,
+                    id: keyStr,
+                    important: false,
+                    done: false
                 });
                 return {
                     todoData: arr
@@ -43,15 +176,25 @@ class Main extends Component {
             });
         };
     }
+
     render() {
         return (
             <div className="todo-app">
-                <Header />
-                <SearchInput /> <ItemStatusFilter />
+                <Header todos={this.state.todoData} />
+                <SearchInput
+                    onSearch={this.onSearchInput} />
+                <ItemStatusFilter
+                    todos={this.state.todoData}
+                    onClickAll={this.filterAll}
+                    onClickActive={this.filterActive}
+                    onClickDone={this.filterDone} />
                 <ToDoList
                     todos={this.state.todoData}
-                    onDeleted={this.deleteItem} />
-                    <AddItem onAdded={this.addItem}/>
+                    onDeleted={this.deleteItem}
+                    onToggledDone={this.toggleDone}
+                    onToggledImportant={this.toggleImportant} />
+
+                <AddItem onAdded={this.addItem} />
             </div>
         );
     }
