@@ -6,47 +6,59 @@ export default class ToDoListItem extends Component{
     constructor(){
         super();
         
-        this.state ={
+        this.state = {
             done: false,
+            important: false
         };
 
         this.onLabelClick = () => {
-            if (this.state.done === false) {
-                this.setState({
-                    done: true
-                });
-            } else{
-                this.setState({
-                    done: false
-                });
+           if(!this.state.done){
+            this.setState({
+                done: true
+              });
+           } else{
+             this.setState({
+               done: false
+             });
+           }
+           
+        };
+        
+        this.onImportantClick = () => {
+          if(!this.state.important) {
+              this.setState({
+                important: true
+              });
+            } else {
+              this.setState({
+                important: false
+              });
             }
-
         };
     }
 
     render(){
-        let {label, important = false} = this.props;
+        let {label} = this.props;
         
-        let {done} = this.state;
-        let classNames = "todo-list-item-label";
+        let {done, important} = this.state;
+        
+        let classNames = "todo-list-item";
         if (done) {
             classNames += " done";
         }
-
-        let style =  {
-            fontWeight: important ? "bold" : "normal",
+        if (important) {
+          classNames += " important";
         }
         return( 
-            <div className="todo-list-item">
+            <div className={classNames}>
                 <div 
-                    style={style}
-                    className={classNames}
+                    className="to-do-list-item-label"
                     onClick={this.onLabelClick}>
                     {label}
                 </div>
 
                 <button type="button"
-                    className="btn btn-outline-success btn-sm float-right">
+                    className="btn btn-outline-success btn-sm float-right" onClick={this.onImportantClick}>
                     <i className="fa fa-exclamation" />
                 </button>
 
@@ -58,5 +70,3 @@ export default class ToDoListItem extends Component{
         );
     }
 }
-
-
