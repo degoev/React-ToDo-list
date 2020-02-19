@@ -42,19 +42,17 @@ export default class ToDoListItem extends Component{
         
         let {done, important} = this.state;
         
-        let classNames = "todo-list-item-label";
+        let classNames = "todo-list-item";
         if (done) {
             classNames += " done";
         }
-
-        let style =  {
-            fontWeight: important ? "bold" : "normal",
+        if (important) {
+          classNames += " important";
         }
         return( 
-            <div className="todo-list-item">
+            <div className={classNames}>
                 <div 
-                    style={style}
-                    className={classNames}
+                    className="to-do-list-item-label"
                     onClick={this.onLabelClick}>
                     {label}
                 </div>
