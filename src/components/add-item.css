@@ -1,5 +1,5 @@
 .add-item{
-    margin: 4px 10px 10px 5px;
+    margin: 5.5px 10px 10px 5px;
     width: 150px;
     height: 36px;
     line-height: 10px;
@@ -13,5 +13,5 @@
     border: 0.5px solid grey;
     border-radius: 3px;
     padding-left: 10px;
-    width: 220px;
+    width: 160px;
 }
