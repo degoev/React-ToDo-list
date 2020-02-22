@@ -2,37 +2,10 @@ import React, {Component} from "react";
 //to-do-list-item.css"
 export default class ToDoListItem extends Component{
 
-    constructor(){
-        super();
-        
-        this.state = {
-            done: false,
-            important: false
-        };
-
-        this.onLabelClick = () => {
-            this.setState(({done})=>{
-                return ({
-                    done: !done
-                });
-              });
-           
-        };
-        
-        this.onImportantClick = () => {
-              this.setState(({important})=>{
-                return ({
-                    important: !important
-                });
-              });
-
-        };
-    }
-
     render(){
-        let {label, onDeleteItem} = this.props;
+        let {label, onDeleteItem, onImportant, onDone} = this.props;
         
-        let {done, important} = this.state;
+        let {done, important} = this.props;
         
         let classNames = "todo-list-item";
         if (done) {
@@ -45,13 +18,13 @@ export default class ToDoListItem extends Component{
             <div className={classNames}>
                 <div 
                     className="to-do-list-item-label"
-                    onClick={this.onLabelClick}>
+                    onClick={onDone}>
                     {label}
                 </div>
 
                 <button type="button"
                     className="btn btn-outline-success btn-sm float-right" 
-                    onClick={this.onImportantClick}>
+                    onClick={onImportant}>
                     <i className="fa fa-exclamation" />
                 </button>
 

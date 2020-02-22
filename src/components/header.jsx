@@ -2,11 +2,15 @@ import React from "react";
 //header.css";
 
 
-let Header = () =>{ 
+let Header = ({todos}) => { 
+    let doneElements = todos.filter((item)=>{
+        return item.done === true;
+    });
+
     return (
         <div className="header-div d-flex">
-            <h1>To-Do List</h1>
-            <h2>{1} more to do, {3} done</h2>
+            <h1>Мои дела</h1>
+            <h2>выполнено: { doneElements.length }, осталось: {todos.length - doneElements.length}</h2>
         </div>
     );
 };
