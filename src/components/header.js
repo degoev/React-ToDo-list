@@ -9,8 +9,8 @@ let Header = ({todos}) => {
 
     return (
         <div className="header-div d-flex">
-            <h1>To-Do List</h1>
-            <h2>{todos.length - doneElements.length} more to do, { doneElements.length } done</h2>
+            <h1>Мои дела</h1>
+            <h2>выполнено: { doneElements.length }, осталось: {todos.length - doneElements.length}</h2>
         </div>
     );
 };

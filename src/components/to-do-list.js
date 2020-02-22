@@ -5,7 +5,6 @@ import "./to-do-list.css";
 let ToDoList = ({todos, onDeleted, onToggledImportant, onToggledDone}) => {
     let elements = todos.map((item) => {
         let {id, ...itemProps} = item;
-        //let keyStr = item.label.split(' ').reduce((sum, word) => sum += word[0], "");
         return (
             <li key={id} className="list-group-item" hidden = {itemProps.hidden}>
                 <ToDoListItem

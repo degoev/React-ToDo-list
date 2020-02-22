@@ -12,28 +12,29 @@ import AddItem from "./components/add-item"
 class Main extends Component {
     constructor() {
         super();
-         //создать элемент
-         this.CreateTodoItem = (label) => {
-            let keyStr = label.split(' ').reduce((sum, word) => sum += word[0], "");
+        //создать элемент
+        this.CreateTodoItem = (label) => {
             return (
                 {
                     label,
-                    id: keyStr,
+                    id: label,
                     important: false,
                     done: false
                 }
             );
         };
-        
+
         this.state = {
             todoData: [
-                this.CreateTodoItem('drink coffee'),
-                this.CreateTodoItem('learn React'),
-                this.CreateTodoItem('have a dinner')
-            ]
+                this.CreateTodoItem('поужинать'),
+                this.CreateTodoItem('стать хакером'),
+                this.CreateTodoItem('поспать')
+            ],
+            term: '',
+            filter: 'all'
         };
 
-       
+
         //отметить как выполненный
         this.toggleDone = (id, value) => {
             this.setState(({ todoData }) => {
@@ -58,93 +59,53 @@ class Main extends Component {
             });
         };
 
-        //show done
-        this.filterDone = () => {
-            this.setState(({ todoData }) => {
-                let arr = todoData.slice();
-                arr.map((item) => {
-                    item.hidden = false;
-                    return item;
-                });
-                arr.map((item) => {
-                    if (item.done === true) {
-                        item.hidden = false;
-                        return item;
-                    } else {
-                        item.hidden = true;
-                        return true;
-                    }
-                });
+        //set active filter
+        this.OnFilterClick = (filter) => {
+            this.setState({ filter });
+        }
+        //update visible items by filters
+        this.showByFilter = (items, filter) => {
+            switch (filter) {
+                case 'all':
+                    return items;
+                case 'active':
+                    return items.filter((item) => !item.done);
 
-                return {
-                    todoData: arr
-                }
-            });
+                case 'done':
+                    return items.filter((item) => item.done);
+
+                default:
+                    return items;
+            }
         };
-
-        //show active
-        this.filterActive = () => {
-            this.setState(({ todoData }) => {
-                let arr = todoData.slice();
-                arr.map((item) => {
-                    item.hidden = false;
-                    return item;
-                });
-                arr.map((item) => {
-                    if (item.done === false) {
-                        item.hidden = false;
-                        return item;
-                    } else {
-                        item.hidden = true;
-                        return true;
-                    }
-                });
-
-                return {
-                    todoData: arr
-                }
-            });
-        };
-
-        //show all
-        this.filterAll = () => {
-            this.setState(({ todoData }) => {
-                let arr = todoData.slice();
-                arr.map((item) => {
-                    item.hidden = false;
-                    return item;
-                });
-
-                return {
-                    todoData: arr
-                }
-            });
-        };
-
         //search around elements
-        this.onSearchInput = (value) => {
-            this.setState(({ todoData }) => {
-                let arr = todoData.slice();
-                arr.map((item) => {
-                    //if (value === "" || item.hidden === false) {
-                    if (item.label.startsWith(value)) {
-                        item.hidden = false;
-                        return item;
-                    } else if (value === "") {
-                        item.hidden = false;
-                        return item;
-                    } else {
-                        item.hidden = true;
-                        return item;
-                    }
-                    //}
-                    //return item;
-                });
+        this.onSearchInput = (term) => {
+            this.setState({ term });
+        };
 
-                return {
-                    todoData: arr
-                }
+        this.search = (items, value) => {
+            if (value === '') {
+                return items;
+            }
+            return items.filter((item) => {
+                return item.label.indexOf(value) > -1;
             });
+            // arr.map((item) => {
+            //     if (item.label.indexOf(value) > 0) {
+            //         item.hidden = false;
+            //         return item;
+            //     } else if (value === "") {
+            //         item.hidden = false;
+            //         return item;
+            //     } else {
+            //         item.hidden = true;
+            //         return item;
+            //     }
+            // });
+
+            // return {
+            //     todoData: arr
+            // }
         };
 
         //удаление элемента
@@ -163,33 +124,28 @@ class Main extends Component {
         this.addItem = (label) => {
             this.setState(({ todoData }) => {
                 let arr = todoData.slice();
-                let keyStr = label.split(' ').reduce((sum, word) => sum += word[0], "");
-                arr.push({
-                    label,
-                    id: keyStr,
-                    important: false,
-                    done: false
-                });
                 return {
-                    todoData: arr
-                }
+                    todoData: [...arr, this.CreateTodoItem(label)]
+                };
             });
         };
     }
 
     render() {
+        let { todoData, filter, term } = this.state;
+        let filteredItems = this.showByFilter(todoData, filter);
+        let visibleItems = this.search(filteredItems, term);
+
         return (
             <div className="todo-app">
-                <Header todos={this.state.todoData} />
+                <Header todos={visibleItems} />
                 <SearchInput
                     onSearch={this.onSearchInput} />
                 <ItemStatusFilter
-                    todos={this.state.todoData}
-                    onClickAll={this.filterAll}
-                    onClickActive={this.filterActive}
-                    onClickDone={this.filterDone} />
+                    OnFilterToggle={this.OnFilterClick}
+                    filter={filter} />
                 <ToDoList
-                    todos={this.state.todoData}
+                    todos={visibleItems}
                     onDeleted={this.deleteItem}
                     onToggledDone={this.toggleDone}
                     onToggledImportant={this.toggleImportant} />

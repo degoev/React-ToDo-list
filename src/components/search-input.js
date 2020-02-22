@@ -8,7 +8,7 @@ let SearchInput = (props) => {
         };
         return (
             <input className="search-input"
-                placeholder="type a task"
+                placeholder="поиск по делам"
                 onChange={onSearchInput} />
         );
 };

@@ -3,20 +3,24 @@ import "./item-status-filter.css";
 
 export default class ItemStatusFilter extends Component {
     render() {
-        let {onClickAll, onClickDone, onClickActive} = this.props;
+        let { OnFilterToggle, filter } = this.props;
+        let buttons = [
+            { name: "all", label: "All" },
+            { name: "active", label: "Active" },
+            { name: "done", label: "Done" }
+        ];
+        buttons = buttons.map((item) => {
+            let clazz = item.name === filter ? "btn btn-info button-filter" : "btn btn-outline-secondary button-filter";
+            return (
+                <button type="button"
+                    className={clazz}
+                    onClick={() => OnFilterToggle(item.name)}
+                    key={item.name}>{item.label}</button>
+            );
+        });
         return (
             <div className="btn-group">
-                <button type="button"
-                    className="btn btn-outline-info button-filter"
-                    onClick={onClickAll}>All</button>
-                <button type="button"
-                    className="btn btn-outline-primary button-filter"
-                    onClick={onClickActive}>Active</button>
-                <button type="button"
-                    className="btn btn-outline-success button-filter"
-                    onClick={onClickDone}>
-                    Done
-                </button>
+                {buttons}
             </div>
         );
     }

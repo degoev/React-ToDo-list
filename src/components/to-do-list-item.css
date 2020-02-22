@@ -1,17 +1,23 @@
   
 .todo-list-item {
     font-size: 1.25rem;
+    /* padding: 0 0 10px 0; */
   }
   
 .todo-list-item button {
     width: 35px;
-    margin: -33px 3px 10px 0;
+    margin: -30px 3px 10px 0;
 }
 
-.todo-list-item-label{
-    margin-left: 1.25rem;
+.to-do-list-item-label{
+    margin-left: 5px;
+    margin-top: -6px;
+    /* margin-bottom: 5px; */
     cursor: pointer;
-    user-select: none;
+    /* user-select: none; */
+    /* vertical-align: middle;*/
+    line-height: 35px;
+    width: 200px;
 }
 
 .done{
