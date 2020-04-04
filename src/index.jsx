@@ -63,6 +63,7 @@ class Main extends Component {
         this.OnFilterClick = (filter) => {
             this.setState({ filter });
         }
+        
         //update visible items by filters
         this.showByFilter = (items, filter) => {
             switch (filter) {
@@ -90,22 +91,7 @@ class Main extends Component {
             return items.filter((item) => {
                 return item.label.indexOf(value) > -1;
             });
-            // arr.map((item) => {
-            //     if (item.label.indexOf(value) > 0) {
-            //         item.hidden = false;
-            //         return item;
-            //     } else if (value === "") {
-            //         item.hidden = false;
-            //         return item;
-            //     } else {
-            //         item.hidden = true;
-            //         return item;
-            //     }
-            // });
 
-            // return {
-            //     todoData: arr
-            // }
         };
 
         //удаление элемента

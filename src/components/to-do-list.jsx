@@ -9,12 +9,15 @@ let ToDoList = ({todos, onDeleted, onToggledImportant, onToggledDone}) => {
             <li key={id} className="list-group-item" hidden = {itemProps.hidden}>
                 <ToDoListItem
                     {...itemProps} 
+                    
                     onDeleteItem={() => onDeleted(id, itemProps.label)}
+                    
                     onImportant={() => onToggledImportant(id, itemProps.label)}
+                    
                     onDone={() => onToggledDone(id, itemProps.label)}
                     />
             </li>
-        )
+        );
     });
     return (
         <ul className="list-group todo-list">
