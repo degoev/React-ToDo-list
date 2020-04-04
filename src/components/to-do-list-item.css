@@ -14,7 +14,7 @@
     margin-top: -6px;
     /* margin-bottom: 5px; */
     cursor: pointer;
-    /* user-select: none; */
+    user-select: none;
     /* vertical-align: middle;*/
     line-height: 35px;
     width: 200px;

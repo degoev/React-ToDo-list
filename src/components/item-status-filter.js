@@ -5,9 +5,9 @@ export default class ItemStatusFilter extends Component {
     render() {
         let { OnFilterToggle, filter } = this.props;
         let buttons = [
-            { name: "all", label: "All" },
-            { name: "active", label: "Active" },
-            { name: "done", label: "Done" }
+            { name: "all", label: "Все" },
+            { name: "active", label: "Активно" },
+            { name: "done", label: "Готово" }
         ];
         buttons = buttons.map((item) => {
             let clazz = item.name === filter ? "btn btn-info button-filter" : "btn btn-outline-secondary button-filter";
