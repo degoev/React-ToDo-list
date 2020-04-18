@@ -4,15 +4,15 @@ import "./to-do-list-item.css"
 export default class ToDoListItem extends Component{
 
     render(){
-        let {label, onDeleteItem, onImportant, onDone} = this.props;
-        
-        let {done, important} = this.props;
+        let {label, 
+            onDeleteItem, 
+            onImportant, 
+            onDone, done, important} = this.props;
         
         let classNames = "todo-list-item";
         if (done) {
             classNames += " done";
-        }
-        if (important) {
+        } else if (important) {
           classNames += " important";
         }
         return( 
