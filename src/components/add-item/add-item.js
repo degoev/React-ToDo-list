@@ -1,46 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import "./add-item.css"
 
-export default class AddItem extends Component {
+const AddItem = (props) => {
 
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.state = {
-            label: ''
-        };
+    //     this.state = {
+    //         label: ''
+    //     };
 
-        this.onSubmitLabel = (event) => {
-            this.setState({
-                label: event.target.value
-            });
-        };
+    //     this.onSubmitLabel = (event) => {
+    //         this.setState({
+    //             label: event.target.value
+    //         });
+    //     };
         
-        this.onSubmitForm = (event) => {
-            event.preventDefault();
-            this.props.onAdded(this.state.label);
-            this.setState({
-                label: ""
-            });
-        };
-    }
-    render() {
-        //let { onAdded } = this.props;
-        return (<form
-        onSubmit={this.onSubmitForm}>
+    //     this.onSubmitForm = (event) => {
+    //         //event.preventDefault();
+    //         this.props.onAdded(this.state.label);
+    //         this.setState({
+    //             label: ""
+    //         });
+    //     };
+    // }
+    // render() {
+    //     //let { onAdded } = this.props;
+        return (
+            <React.Fragment>
             <input
                 type="text"
                 placeholder="Я собираюсь..."
                 id="add-id"
-                className="add-input"
-                onChange={this.onSubmitLabel}
-                value={this.state.label} />
-
-            <button
-                className="btn btn-outline-primary add-item">
+                className="add-input" onBlur={(event) => props.onAdded(event.target.value)} />
+            <button className="btn btn-outline-primary add-item">
                 Добавить задачу
             </button>
-        </form>
+            </ React.Fragment>
         );
     }
-}
+
+export default AddItem;

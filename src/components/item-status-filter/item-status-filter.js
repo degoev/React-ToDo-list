@@ -11,6 +11,7 @@ export default class ItemStatusFilter extends Component {
         ];
         buttons = buttons.map((item) => {
             let clazz = item.name === filter ? "btn btn-info button-filter" : "btn btn-outline-secondary button-filter";
+
             return (
                 <button type="button"
                     className={clazz}

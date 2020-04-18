@@ -12,6 +12,8 @@ const toggledImportant = (id) => {
      };
 };
 
+console.log(typeof toggledImportant)
+
 const filterClicked = (filter) => {
      return {
           type: "FILTER_CLICKED",
@@ -27,6 +29,7 @@ const typedInSearch = (value) => {
 };
 
 const addItem = (value) => {
+     console.log(value)
      return {
           type: "ITEM_ADDED",
           payload: value

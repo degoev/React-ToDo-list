@@ -59,16 +59,18 @@ const addItem = (state, label) => {
          let arr = state.todoData.slice();
          return {
               ...state,
-             todoData: [...arr, this.CreateTodoItem(label)]
+             todoData: [...arr, CreateTodoItem(label)]
          };
  };
+ 
+ let init = CreateTodoItem('ваша первая задача.');
 
  let initialState = {
      todoData: [
-          CreateTodoItem('добавьте вашу первую задачу')
+          init
       ],
       visibleItems: [
-          CreateTodoItem('добавьте вашу первую задачу')
+          init
       ],
       term: '',
       filter: 'all',
@@ -87,7 +89,8 @@ const reducer = (state = initialState, action) => {
           case "FILTER_CLICKED":
                return {
                     ...state,
-                    visibleItems: showByFilter(state.todoData, action.payload)
+                    visibleItems: showByFilter(state.todoData, action.payload),
+                    filter: action.payload
                };
 
           case "TYPED_IN_SEARCH_INPUT":

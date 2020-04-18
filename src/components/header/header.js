@@ -1,11 +1,10 @@
 import React from "react";
+
 import "./header.css";
 
 
 let Header = ({todos}) => { 
-    let doneElements = todos.filter((item)=>{
-        return item.done === true;
-    });
+    let doneElements = todos.filter((item) => item.done);
 
     return (
         <div className="header-div d-flex">
@@ -15,4 +14,5 @@ let Header = ({todos}) => {
     );
 };
 
-export default Header
+
+export default Header;

@@ -1,5 +1,8 @@
 import React from "react";
-import "./search-input.css"
+// import { connect } from "react-redux";
+
+// import { typedInSearch } from "../../actions/actions.js";
+import "./search-input.css";
 
 let SearchInput = (props) => {
     let {onSearch} = props;
@@ -14,4 +17,6 @@ let SearchInput = (props) => {
         );
 };
 
-export default SearchInput
+
+
+export default SearchInput;
