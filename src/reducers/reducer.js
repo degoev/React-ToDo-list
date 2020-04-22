@@ -34,14 +34,16 @@ const search = (items, value) => {
      });
  };
 
-const toggleUpdate = (state, id, taskState) => {
+const toggleUpdate = (state, {id, taskState}) => {
      let todoData = state.todoData.slice();
      let index = todoData.findIndex((item) => item.id === id);
      let item = JSON.parse(JSON.stringify(todoData[index]));
      item[taskState] = !item[taskState];
+     let todoDataUpd = [...todoData.slice(0, index), item, ...todoData.slice(index + 1)];
      return {
           ...state,
-          todoData: [...todoData.slice(0, index), item, ...todoData.slice(index + 1)]
+          todoData: todoDataUpd,
+          visibleItems: search(showByFilter(todoDataUpd, state.filter), state.term)
       };
 };
 
@@ -51,15 +53,20 @@ const deleteItem = (state, id) => {
      arr.splice(index, 1);
      return {
           ...state,
-          todoData: arr
+          todoData: arr,
+          visibleItems: search(showByFilter(arr, state.filter), state.term)
      };
 };
 
 const addItem = (state, label) => {
          let arr = state.todoData.slice();
+         let todoDataUpd = [...arr, CreateTodoItem(label)]
+         let visibleItems = search(showByFilter(todoDataUpd, state.filter), state.term);
+         console.log(visibleItems)
          return {
               ...state,
-             todoData: [...arr, CreateTodoItem(label)]
+             todoData: todoDataUpd,
+             visibleItems 
          };
  };
  
@@ -81,10 +88,8 @@ const addItem = (state, label) => {
 const reducer = (state = initialState, action) => {
      switch(action.type){
           case "TOGGLED_DONE":
-               return toggleUpdate(state, action.payload, "done");
-
           case "TOGGLED_IMPORTANT":
-               return toggleUpdate(state, action.payload, "important");
+               return toggleUpdate(state, action.payload);
 
           case "FILTER_CLICKED":
                return {
@@ -96,7 +101,8 @@ const reducer = (state = initialState, action) => {
           case "TYPED_IN_SEARCH_INPUT":
                return {
                     ...state,
-                    visibleItems: search(state.todoData, action.payload)
+                    visibleItems: search(state.todoData, action.payload),
+                    term: action.payload
                };
 
           case "ITEM_DELETED":

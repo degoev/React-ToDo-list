@@ -1,43 +1,47 @@
-import React from "react";
+import React, { Component} from "react";
 import "./add-item.css"
 
-const AddItem = (props) => {
+class AddItem extends Component {
 
-    // constructor() {
-    //     super();
+    constructor() {
+        super();
 
-    //     this.state = {
-    //         label: ''
-    //     };
+        this.state = {
+            label: ''
+        };
 
-    //     this.onSubmitLabel = (event) => {
-    //         this.setState({
-    //             label: event.target.value
-    //         });
-    //     };
+        this.onChangeLabel = (event) => {
+            this.setState({
+                label: event.target.value
+            });
+        };
         
-    //     this.onSubmitForm = (event) => {
-    //         //event.preventDefault();
-    //         this.props.onAdded(this.state.label);
-    //         this.setState({
-    //             label: ""
-    //         });
-    //     };
-    // }
-    // render() {
-    //     //let { onAdded } = this.props;
+        this.onSubmitForm = (event) => {
+            event.preventDefault();
+            if(this.state.label !== "") this.props.onAdded(this.state.label)
+            
+            this.setState({
+                label: ""
+            });
+        };
+    }
+    render() {
         return (
-            <React.Fragment>
-            <input
-                type="text"
-                placeholder="Я собираюсь..."
-                id="add-id"
-                className="add-input" onBlur={(event) => props.onAdded(event.target.value)} />
-            <button className="btn btn-outline-primary add-item">
-                Добавить задачу
-            </button>
-            </ React.Fragment>
+            <form className="bottom-panel d-flex" onSubmit={this.onSubmitForm}>
+                <input
+                    type="text"
+                    placeholder="Я собираюсь..."
+                    className="form-control new-todo-label" 
+                    onChange={this.onChangeLabel}
+                    value={this.state.label} />
+                <button 
+                    //type="submit" 
+                    className="btn btn-outline-primary">
+                    Добавить задачу
+                </button>
+            </form>
         );
     }
+}
 
 export default AddItem;

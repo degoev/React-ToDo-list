@@ -1,8 +1,10 @@
-.search-input{
-    margin: 10px 10px 10px 15px;
-    height: 35px;
-    border: 0.5px solid grey;
-    border-radius: 3px;
-    padding-left: 10px;
-    width: 170px;
-}
+.search-panel {
+    margin: 1rem 0;
+    display: flex;
+  }
+  
+  .search-panel .search-input {
+    width: auto;
+    flex-grow: 1;
+    margin-right: 3px;
+  }

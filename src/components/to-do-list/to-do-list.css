@@ -1,4 +1,4 @@
-.todo-list .list-group-item{
+/*.todo-list .list-group-item{
     height: 50px;
     border-radius: 5px;
     border: 0.5px solid rgba(128, 128, 128, 0.5);
@@ -8,4 +8,9 @@
 .list-group{
     margin: 10px 15px;
     width: 390px;
-}
+}*/
+
+  
+.todo-list .list-group-item {
+    padding: .25rem .75rem;
+  }

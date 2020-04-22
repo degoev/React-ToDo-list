@@ -11,9 +11,9 @@ let SearchInput = (props) => {
             onSearch(event.target.value);
         };
         return (
-            <input className="search-input"
-                placeholder="поиск по делам"
-                onChange={onSearchInput} />
+                <input className="form-control search-input"
+                    placeholder="поиск по делам"
+                    onChange={onSearchInput} />
         );
 };
 

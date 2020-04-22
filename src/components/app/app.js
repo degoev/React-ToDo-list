@@ -24,11 +24,12 @@ const App = (props) => {
         return (
             <div className="todo-app">
                 <Header todos={visibleItems} />
-                <SearchInput onSearch={ typedInSearch }/>
-                <ItemStatusFilter
-                    OnFilterToggle={filterClicked}
-                    filter={filter} />
-
+                <div className="search-panel d-flex">
+                    <SearchInput onSearch={ typedInSearch }/>
+                    <ItemStatusFilter
+                        OnFilterToggle={filterClicked}
+                        filter={filter} />
+                </div>
                 <ToDoList
                     deleteItem={deleteItem} toggledDone={toggledDone} toggledImportant={toggledImportant}
                     todos={visibleItems} />

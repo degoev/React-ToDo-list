@@ -1,18 +1,16 @@
 const toggledDone = (id) => {
      return {
           type: "TOGGLED_DONE",
-          payload: id
+          payload: {id, taskState: "done"}
      };
 };
 
 const toggledImportant = (id) => {
-     return {
+     return { 
           type: "TOGGLED_IMPORTANT",
-          payload: id
+          payload: {id, taskState: "important"}
      };
 };
-
-console.log(typeof toggledImportant)
 
 const filterClicked = (filter) => {
      return {
@@ -29,7 +27,6 @@ const typedInSearch = (value) => {
 };
 
 const addItem = (value) => {
-     console.log(value)
      return {
           type: "ITEM_ADDED",
           payload: value

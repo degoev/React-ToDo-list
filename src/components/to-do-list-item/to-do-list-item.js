@@ -11,20 +11,20 @@ const ToDoListItem = (props) => {
             deleteItem, 
             toggledImportant, 
             toggledDone, done, important} = props;
-        console.log(typeof toggledImportant)
+            
         let classNames = "todo-list-item";
         if (done) {
             classNames += " done";
-        } else if (important) {
+        }
+        if (important) {
           classNames += " important";
         }
         return( 
-            <div className={classNames}>
-                <div 
-                    className="to-do-list-item-label"
+            <span className={classNames}>
+                <span  className="todo-list-item-label"
                     onClick={() => toggledDone(id)}>
                     {label}
-                </div>
+                </span >
 
                 <button type="button"
                     className="btn btn-outline-success btn-sm float-right" 
@@ -37,7 +37,7 @@ const ToDoListItem = (props) => {
                     onClick={() => deleteItem(id)}>
                     <i className="fa fa-trash-o" />
                 </button>
-            </div>
+            </span>
         );
     };
 
